@@ -26,6 +26,12 @@ res.json(id.nome="Rafael");
 console.log(resultadoSave);
 });
 
+app.delete("/:id", async function(req,res ){
+var resultado = usuario.destroy({ where: { id: req.params.id }});
+console.log(resultado);
+  res.json(resultado)
+});
+
 
 app.listen(3000, function(){
   console.log("O servidor está positivo e operante")
