@@ -7,8 +7,6 @@ app.use(express.urlencoded({
   extended: true
 }))
 
-
-
 app.get("/", async function(req,res){
   var resultado = await usuario.findAll();
   res.json(resultado); 
@@ -32,6 +30,10 @@ console.log(resultado);
   res.json(resultado)
 });
 
+app.get("/:id", async function(req,res){
+  const id = await usuario.findByPk(req.params.id);
+  res.json(id)
+});
 
 app.listen(3000, function(){
   console.log("O servidor está positivo e operante")
