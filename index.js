@@ -19,6 +19,13 @@ app.post("/", function(req,res){
   res.json(resultado);
 });
 
+app.put("/:id", async function(req,res){
+  const id = await usuario.findByPk(req.params.id);
+res.json(id.nome="Rafael");
+  const resultadoSave = await id.save();
+console.log(resultadoSave);
+});
+
 
 app.listen(3000, function(){
   console.log("O servidor está positivo e operante")
