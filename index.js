@@ -49,16 +49,17 @@ app.post("/empresas", function(req,res){
 });
 
 app.put("/empresas/:id", async function(req,res){
-  const id = await empresa.findByPk(req.params.id);
-res.json(id.nome="IRD");
-  const resultadoSave = await id.save();
-console.log(resultadoSave);
+  const atualizar = await empresa.findByPk(req.params.id);
+var resultado = await atualizar.update(req.body);
+  res.json(resultado);
+  
 });
 
 app.delete("/empresas/:id", async function(req,res ){
-var resultado = empresa.destroy({ where: { id: req.params.id }});
-console.log(resultado);
-  res.json(resultado)
+ const atualizar = await empresa.findByPk(req.params.id);
+  atualizar.destroy();
+console.log(atualizar);
+  res.json(atualizar)
 });
 
 app.get("/empresas/:id", async function(req,res){
