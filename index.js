@@ -36,6 +36,12 @@ app.get("/usuarios/:id", async function(req,res){
   res.json(id)
 });
 
+app.get("/usuarios/:id/empresa", async function(req,res){
+  let resultado = await usuario.findByPk(req.params.id, {include: 'empresa'
+  });
+  res.json(resultado.empresa);
+});
+
 //empresas
 
 app.get("/empresas", async function(req,res){
@@ -66,6 +72,13 @@ app.get("/empresas/:id", async function(req,res){
   const id = await empresa.findByPk(req.params.id);
   res.json(id)
 });
+
+app.get("/empresas/:id/usuarios", async function(req,res){
+  let resultado = await empresa.findByPk(req.params.id, {include: 'usuarios'
+  });
+  res.json(resultado.usuarios); 
+});
+
 
 app.listen(3000, function(){
   console.log("O servidor está positivo e operante")
